@@ -12,6 +12,13 @@ public class Leader {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne
+    @JoinTable(name = "company_diversity_info_leaders",
+            joinColumns = @JoinColumn(name = "LEADER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COMPANY_ID")
+    )
+    private Company company;
+
     private String name;
 
     private String companyName;

@@ -17,7 +17,7 @@ public class Company {
     private String companyName;
     private String companyDescription;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinTable(
             name = "company_diversity_info_leaders",
             joinColumns = @JoinColumn(name = "COMPANY_ID"),
