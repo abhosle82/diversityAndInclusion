@@ -20,7 +20,7 @@ public class WbencWebScraperHelperImpl implements WbencWebScraperHelper{
     }
 
     @Override
-    public void getProfileDetails(WebClient clientProfile, String strProfileUrl,Wbenc wbenc) throws IOException {
+    public Wbenc getProfileDetails(WebClient clientProfile, String strProfileUrl,Wbenc wbenc) throws IOException {
         HtmlPage page = clientProfile.getPage(strProfileUrl);
         //List<HtmlElement> itemList = page.getByXPath("//div[@class='two-long-left-cols rpo-content-left']");
         List<HtmlElement> itemList = page.getByXPath(WbencWebScraperConstants.PROFILE_INIT_PATH);
@@ -32,26 +32,31 @@ public class WbencWebScraperHelperImpl implements WbencWebScraperHelper{
                 wbenc.setOrgName(strOrganizationName);
                 String strAboutOrganization = ((HtmlElement) htmlItem.getFirstByXPath(WbencWebScraperConstants.ABOUT_ORG_NAME_PATH)).asNormalizedText();
                 wbenc.setAboutOrg(strAboutOrganization);
+
                 String strLocations = ((HtmlElement) htmlItem.getFirstByXPath(WbencWebScraperConstants.LOCATION_PATH)).asNormalizedText().replace("\n","$");
                 String strRoleAndEmail = ((HtmlElement) htmlItem.getFirstByXPath(WbencWebScraperConstants.EMAIL_PATH)).asNormalizedText().replace("\n","$");
                 String strRole = getRole(strRoleAndEmail);
                 wbenc.setRole(strRole);
+
                 String strPersonalEmail = getPersonEmail(strRoleAndEmail);
                 wbenc.setEmail(strPersonalEmail);
+
                 String strStates = getStates(strLocations);
                 wbenc.setStates(strStates);
+
                 String strContacts = getContacts(strLocations);
                 wbenc.setContacts(strContacts);
 
-                System.out.println("Organization Name:"+strOrganizationName);
-                System.out.println("Role :"+strRole);
-                System.out.println("About Organization :"+strAboutOrganization.replace("\n",""));
-                System.out.println("States :"+strStates);
-                System.out.println("Email :"+strPersonalEmail);
-                System.out.println("Contacts:"+strContacts);
+                System.out.println("Organization Name:"+wbenc.getOrgName());
+                System.out.println("Role :"+wbenc.getRole());
+                System.out.println("About Organization :"+wbenc.getAboutOrg().replace("\n",""));
+                System.out.println("States :"+wbenc.getStates());
+                System.out.println("Email :"+wbenc.getStates());
+                System.out.println("Contacts:"+wbenc.getContacts());
 
             }
         }
+        return wbenc;
 
     }
 

@@ -23,7 +23,6 @@ public class WbencWebScraper implements DandIWebscraper {
 
     @Override
     public List<Wbenc> scrapeDiversityAndInclusionData() {
-        Wbenc wbenc = new Wbenc();
         List<Wbenc> listOfWebnc=new ArrayList<>();
         try(WebClient webClient= client) {
             String baseUrl = WbencWebScraperConstants.WBENC_URL;
@@ -34,6 +33,7 @@ public class WbencWebScraper implements DandIWebscraper {
             } else {
                 for (HtmlElement htmlItem : itemList) {
                     if(htmlItem.getFirstByXPath(WbencWebScraperConstants.LEADER_PATH)!=null) {
+                        Wbenc wbenc = new Wbenc();
                         String strLeaderName = ((HtmlElement) htmlItem.getFirstByXPath(WbencWebScraperConstants.LEADER_PATH)).asNormalizedText();
                         wbenc.setLeaderName(strLeaderName);
                         String url = ((HtmlAnchor) htmlItem.getFirstByXPath(WbencWebScraperConstants.ORG_PATH)).getHrefAttribute();
@@ -52,7 +52,6 @@ public class WbencWebScraper implements DandIWebscraper {
         }catch (Exception e) {
             e.printStackTrace();
         }finally{
-            //System.out.println("1:"+listOfWebnc.get(0).getLeaderName()+":"+listOfWebnc.get(0).getEmail()+":"+listOfWebnc.get(0).getContacts()+":"+listOfWebnc.get(0).getAboutOrg());
             client.close();
         }
         return listOfWebnc;

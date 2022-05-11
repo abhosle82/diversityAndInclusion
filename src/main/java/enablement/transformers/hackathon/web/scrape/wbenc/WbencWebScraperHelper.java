@@ -10,7 +10,7 @@ public interface WbencWebScraperHelper {
 
     public String getOrgUrl() throws IOException;
 
-    public void getProfileDetails(WebClient clientProfile, String strProfileUrl, Wbenc wbenc) throws IOException;
+    public Wbenc getProfileDetails(WebClient clientProfile, String strProfileUrl, Wbenc wbenc) throws IOException;
 
     public String getStates(String strLocations);
 

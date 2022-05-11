@@ -29,8 +29,8 @@ public class DiversityAndInclusionServiceImpl implements DiversityAndInclusionSe
     @Override
     public List<DiversityAndInclusion> generateDiversityAndInclusionData(List<Wbenc> lsWebnc) {
         List<DiversityAndInclusion> lsDiversityAndInclusion = new ArrayList<>();
-        DiversityAndInclusion objDiversityAndInclusion = new DiversityAndInclusion();
         for(Wbenc wbenc: lsWebnc){
+            DiversityAndInclusion objDiversityAndInclusion = new DiversityAndInclusion();
             System.out.println("loop::");
             objDiversityAndInclusion.setLeaderName(wbenc.getLeaderName());
             objDiversityAndInclusion.setOrgName(wbenc.getOrgName());
