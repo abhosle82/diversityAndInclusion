@@ -41,15 +41,15 @@ public class DiversityAndInclusionServiceImpl implements DiversityAndInclusionSe
             leader.setEmailId(diversityAndInclusion.getEmail());
             leader.setMobileNumber(diversityAndInclusion.getContacts());
             leader.setName(diversityAndInclusion.getLeaderName());
-            setOfLeaders.add(leader);
             lsLeader.add(leader);
-        }
-        for(DiversityAndInclusion diversityAndInclusion: lsDAndI) {
+
             Company company = new Company();
             company.setCompanyName(diversityAndInclusion.getOrgName());
+            company.setCompanyDescription(diversityAndInclusion.getAboutOrg());
             company.setEmailId(diversityAndInclusion.getContacts());
             company.setUrls(diversityAndInclusion.getUrl());
             company.setMobileNumber(diversityAndInclusion.getContacts());
+            setOfLeaders.add(leader);
             company.setLeaders(setOfLeaders);
             lsCompany.add(company);
         }
