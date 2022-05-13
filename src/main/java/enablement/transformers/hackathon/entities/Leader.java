@@ -12,11 +12,13 @@ public class Leader {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinTable(name = "company_diversity_info_leaders",
             joinColumns = @JoinColumn(name = "LEADER_ID"),
             inverseJoinColumns = @JoinColumn(name = "COMPANY_ID")
-    )
+    )*/
+    @ManyToOne
+    @JoinColumn(name = "COMPANY_ID")
     private Company company;
 
     private String name;
@@ -153,5 +155,13 @@ public class Leader {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

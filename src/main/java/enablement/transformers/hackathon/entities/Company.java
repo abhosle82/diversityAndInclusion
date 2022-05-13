@@ -17,12 +17,13 @@ public class Company {
     private String companyName;
     private String companyDescription;
 
-    @OneToMany
+   /* @OneToMany
     @JoinTable(
             name = "company_diversity_info_leaders",
             joinColumns = @JoinColumn(name = "COMPANY_ID"),
             inverseJoinColumns = @JoinColumn(name = "LEADER_ID")
-    )
+    )*/
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private Set<Leader> leaders;
 
     private String mobileNumber;
